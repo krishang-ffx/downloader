@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#090d18" />
+  <meta name="description" content="A simple link helper for opening and previewing YouTube and Instagram videos." />
+  <title>ClipFetch — Video Link Helper</title>
+  <style>
+    :root{color-scheme:dark;--bg:#090d18;--panel:#11182a;--line:#26324a;--muted:#9aa8c2;--text:#f4f7ff;--accent:#7c5cff;--accent2:#27d7b0}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(ellipse at top,#182449 0%,var(--bg) 55%);color:var(--text);display:grid;place-items:center;padding:24px}.wrap{width:min(780px,100%)}.brand{display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:24px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#28c7d9);display:grid;place-items:center;font-size:22px;box-shadow:0 8px 28px #7c5cff55}.brand h1{font-size:25px;letter-spacing:-.7px;margin:0}.brand span{color:#aab6d1}.card{background:#11182aef;border:1px solid var(--line);border-radius:26px;padding:clamp(22px,5vw,40px);box-shadow:0 24px 80px #0005;backdrop-filter:blur(12px)}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:800;color:var(--accent2);text-align:center}.title{text-align:center;font-size:clamp(27px,5vw,42px);line-height:1.1;letter-spacing:-1.5px;margin:12px 0}.subtitle{text-align:center;color:var(--muted);line-height:1.6;max-width:540px;margin:0 auto 26px;font-size:14px}.platforms{display:flex;justify-content:center;gap:10px;margin-bottom:20px;flex-wrap:wrap}.platform{border:1px solid var(--line);background:#0b1120;border-radius:999px;padding:9px 14px;font-size:13px;color:#dbe4f8;display:flex;gap:8px;align-items:center}.dot{width:8px;height:8px;border-radius:50%;background:#ff4545}.platform.insta .dot{background:#e66ad8}label{display:block;font-size:13px;font-weight:700;margin:0 0 9px;color:#dce5f8}.inputrow{display:flex;gap:10px}.inputwrap{flex:1;position:relative;min-width:0}.inputwrap input{width:100%;height:54px;border:1px solid #34415c;background:#090f1e;color:var(--text);border-radius:14px;padding:0 76px 0 15px;font-size:14px;outline:none}.inputwrap input:focus{border-color:var(--accent);box-shadow:0 0 0 3px #7c5cff25}.paste{position:absolute;right:8px;top:8px;height:38px;border:0;border-radius:9px;padding:0 10px;background:#202b43;color:#dce5f8;cursor:pointer;font-size:12px}.btn{min-height:48px;border:1px solid #34415c;border-radius:13px;padding:0 17px;background:#202b43;color:#f4f7ff;font-weight:750;font-size:13px;cursor:pointer;transition:transform .15s,opacity .15s}.btn:hover{transform:translateY(-1px)}.btn.primary{border:0;background:linear-gradient(135deg,var(--accent),#5d7cff)}.btn:disabled{opacity:.55;cursor:not-allowed}.hint{color:var(--muted);font-size:12px;margin:10px 2px 0;line-height:1.5}.status{display:none;margin-top:18px;border:1px solid var(--line);border-radius:14px;padding:14px;font-size:13px;line-height:1.6}.status.show{display:block}.status.error{border-color:#7f3544;background:#321722;color:#ffd9df}.status.info{border-color:#344b79;background:#14213b;color:#dce8ff}.status.success{border-color:#246b5c;background:#102c29;color:#c9fff1}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.preview{display:none;margin-top:20px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#090f1e}.preview.show{display:block}.preview-head{padding:12px 14px;font-size:13px;font-weight:750;border-bottom:1px solid var(--line)}.frame-wrap{aspect-ratio:16/9;background:#05070c}.frame-wrap iframe{width:100%;height:100%;border:0}.preview-note{font-size:12px;color:var(--muted);padding:12px 14px;line-height:1.5}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.feature{border:1px solid var(--line);background:#0b1120;border-radius:15px;padding:15px}.feature b{display:block;font-size:13px;margin:7px 0 4px}.feature p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}.ico{font-size:19px}.foot{text-align:center;color:#7f8da8;font-size:11px;line-height:1.6;margin:20px auto 0;max-width:600px}a{color:#a8eaff;overflow-wrap:anywhere}@media(max-width:560px){body{padding:14px}.inputrow{flex-direction:column}.inputrow .btn{width:100%}.features{grid-template-columns:1fr}.feature{display:flex;gap:12px;align-items:flex-start}.feature b{margin-top:0}.feature .ico{padding-top:1px}.brand h1{font-size:22px}.actions .btn{flex:1}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="brand"><div class="logo" aria-hidden="true">▶</div><h1>ClipFetch <span>↗</span></h1></div>
+    <section class="card">
+      <div class="eyebrow">Your link, one simple place</div>
+      <h2 class="title">Paste a link.<br />Open it simply.</h2>
+      <p class="subtitle">Recognize YouTube and Instagram links, preview supported YouTube videos, and open the original post on its official platform.</p>
+      <div class="platforms"><div class="platform"><i class="dot"></i>YouTube</div><div class="platform insta"><i class="dot"></i>Instagram</div></div>
+      <form id="linkForm">
+        <label for="videoUrl">Video URL</label>
+        <div class="inputrow">
+          <div class="inputwrap"><input id="videoUrl" type="url" placeholder="Paste a YouTube or Instagram link…" autocomplete="url" required aria-describedby="urlHint"/><button class="paste" type="button" id="pasteBtn">Paste</button></div>
+          <button class="btn primary" type="submit">Check link →</button>
+        </div>
+        <p class="hint" id="urlHint">Use a public video or post URL. Never enter your platform password here.</p>
+      </form>
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+      <div id="actions" class="actions" hidden>
+        <button class="btn primary" id="openBtn" type="button">Open on platform ↗</button>
+        <button class="btn" id="previewBtn" type="button" hidden>Show YouTube preview</button>
+        <button class="btn" id="clearBtn" type="button">Clear</button>
+      </div>
+      <section class="preview" id="preview" aria-label="Video preview">
+        <div class="preview-head">YouTube preview</div>
+        <div class="frame-wrap"><iframe id="youtubeFrame" title="YouTube video preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+        <div class="preview-note">Some videos disable embedding or require age/account verification. If the preview doesn't load, use “Open on platform”.</div>
+      </section>
+      <div class="features">
+        <div class="feature"><div class="ico">🔗</div><div><b>Link detection</b><p>Recognizes supported YouTube and Instagram URL formats.</p></div></div>
+        <div class="feature"><div class="ico">🛡️</div><div><b>Privacy first</b><p>No passwords, cookies, or account credentials are requested.</p></div></div>
+        <div class="feature"><div class="ico">📱</div><div><b>Mobile friendly</b><p>Responsive layout for phones, tablets, and desktop browsers.</p></div></div>
+      </div>
+    </section>
+    <p class="foot">ClipFetch is an independent link helper and is not affiliated with YouTube or Instagram. It does not download or extract video files. Use each platform’s official options and respect creators’ rights and platform terms.</p>
+  </main>
+<script>
+  const form = document.getElementById('linkForm');
+  const input = document.getElementById('videoUrl');
+  const statusBox = document.getElementById('status');
+  const actions = document.getElementById('actions');
+  const openBtn = document.getElementById('openBtn');
+  const previewBtn = document.getElementById('previewBtn');
+  const preview = document.getElementById('preview');
+  const youtubeFrame = document.getElementById('youtubeFrame');
+  let currentUrl = '';
+  let currentPlatform = '';
+  let currentVideoId = '';
+
+  function showStatus(message, type = 'info') {
+    statusBox.className = `status show ${type}`;
+    statusBox.textContent = message;
+  }
+  function getYouTubeId(url) {
+    const host = url.hostname.toLowerCase().replace(/^www\./, '').replace(/^m\./, '');
+    if (host === 'youtu.be') return url.pathname.split('/').filter(Boolean)[0] || '';
+    if (host === 'youtube.com' || host === 'music.youtube.com' || host === 'youtube-nocookie.com') {
+      if (url.pathname === '/watch') return url.searchParams.get('v') || '';
+      const match = url.pathname.match(/^\/(?:embed|shorts|live)\/([\w-]+)/);
+      return match ? match[1] : '';
+    }
+    return '';
+  }
+  function detectPlatform(raw) {
+    let url;
+    try { url = new URL(raw); } catch { return null; }
+    if (!['https:', 'http:'].includes(url.protocol)) return null;
+    const host = url.hostname.toLowerCase().replace(/^www\./, '').replace(/^m\./, '');
+    if (['youtube.com', 'youtu.be', 'music.youtube.com', 'youtube-nocookie.com'].includes(host)) {
+      return { name: 'YouTube', url, videoId: getYouTubeId(url) };
+    }
+    if (host === 'instagram.com' || host.endsWith('.instagram.com')) {
+      return { name: 'Instagram', url, videoId: '' };
+    }
+    return null;
+  }
+
+  document.getElementById('pasteBtn').addEventListener('click', async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      if (text) { input.value = text.trim(); input.focus(); }
+      else showStatus('Your clipboard is empty. Copy a link first.', 'info');
+    } catch {
+      input.focus();
+      showStatus('Clipboard access was blocked. Click the field and paste manually (Ctrl+V or long-press).', 'info');
+    }
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const result = detectPlatform(input.value.trim());
+    if (!result) {
+      actions.hidden = true;
+      preview.classList.remove('show');
+      youtubeFrame.src = 'about:blank';
+      showStatus('Please enter a valid YouTube or Instagram URL starting with https:// or http://.', 'error');
+      return;
+    }
+    currentUrl = result.url.href;
+    currentPlatform = result.name;
+    currentVideoId = result.videoId;
+    openBtn.textContent = `Open on ${result.name} ↗`;
+    actions.hidden = false;
+    preview.classList.remove('show');
+    youtubeFrame.src = 'about:blank';
+    previewBtn.hidden = !(result.name === 'YouTube' && result.videoId);
+    if (result.name === 'YouTube') {
+      showStatus(result.videoId ? 'YouTube video detected. You can open the original video or try the embedded preview below.' : 'YouTube link detected. This URL may be a channel, playlist, or an unsupported video format.', 'success');
+    } else {
+      showStatus('Instagram link detected. Open the original post or reel on Instagram. Instagram controls whether its content can be embedded or downloaded.', 'success');
+    }
+  });
+
+  openBtn.addEventListener('click', () => {
+    if (currentUrl) window.open(currentUrl, '_blank', 'noopener,noreferrer');
+  });
+  previewBtn.addEventListener('click', () => {
+    if (!currentVideoId) return;
+    youtubeFrame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(currentVideoId)}`;
+    preview.classList.add('show');
+    preview.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    input.value = '';
+    currentUrl = currentPlatform = currentVideoId = '';
+    actions.hidden = true;
+    preview.classList.remove('show');
+    youtubeFrame.src = 'about:blank';
+    statusBox.className = 'status';
+    input.focus();
+  });
+</script>
+</body>
+</html>
